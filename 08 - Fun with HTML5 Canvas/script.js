@@ -15,36 +15,36 @@ let hue = 0;
 let direction = true;
 
 function draw(e) {
-  if(!isDrawing) return;
-  console.log(e);
-  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-  ctx.lineWidth = hue;
-  ctx.beginPath();
-  //start from
-  ctx.moveTo(lastX, lastY);
-  //go to
-  ctx.lineTo(e.offsetX, e.offsetY);
-  ctx.stroke();
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-  hue++;
-  if(hue >= 360) {
-    hue = 0;
-  }
+    if (!isDrawing) return;
+    console.log(e);
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    ctx.lineWidth = hue;
+    ctx.beginPath();
+    //start from
+    ctx.moveTo(lastX, lastY);
+    //go to
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+    hue++;
+    if (hue >= 360) {
+      hue = 0;
+    }
   //lastX = e.offsetX;
   //lastY = e.offsetY;
 }
-if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-  direction = !direction;
+if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction;
 }
-if(direction) {
-  ctx.lineWidth++;
+if (direction) {
+    ctx.lineWidth++;
 } else {
-  ctx.lineWidth--;
+    ctx.lineWidth--;
 }
 
 canvas.addEventListener('mousedown', (e) => {
-  isDrawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY]; 
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY]; 
 });
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
